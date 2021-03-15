@@ -24,7 +24,6 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install .\issuer\
-        node .\issuer\app.js
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2

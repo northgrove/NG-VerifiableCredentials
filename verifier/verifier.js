@@ -53,18 +53,18 @@ var crypto = new CryptoBuilder()
 
 //////////// Main Express server function
 // Note: You'll want to update port values for your setup.
-const app = express()
+const verifierapp = express()
 const port = process.env.PORT || 8082;
 
 // Serve static files out of the /public directory
-app.use(express.static('public'))
+verifierapp.use(express.static('.\\verifier\\public'))
 
 // Set up a simple server side session store.
 // The session store will briefly cache presentation requests
 // to facilitate QR code scanning, and store presentation responses
 // so they can be retrieved by the browser.
 var sessionStore = new session.MemoryStore();
-app.use(session({
+verifierapp.use(session({
   secret: 'cookie-secret-key',
   resave: false,
   saveUninitialized: true,
@@ -72,7 +72,7 @@ app.use(session({
 }))
 
 // echo function so you can test deployment
-app.get("/echo",
+verifierapp.get("/echo",
     function (req, res) {
         res.status(200).json({
             'date': new Date().toISOString(),
@@ -88,14 +88,14 @@ app.get("/echo",
 );
 
 // Serve index.html as the home page
-app.get('/', function (req, res) { 
+verifierapp.get('/', function (req, res) { 
   res.sendFile('public/index.html', {root: __dirname})
 })
 
 // Generate an presentation request, cache it on the server,
 // and return a reference to the issuance reqeust. The reference
 // will be displayed to the user on the client side as a QR code.
-app.get('/presentation-request', async (req, res) => {
+verifierapp.get('/presentation-request', async (req, res) => {
 
   // Construct a request to issue a verifiable credential 
   // using the verifiable credential issuer service
@@ -139,7 +139,7 @@ app.get('/presentation-request', async (req, res) => {
 // When the QR code is scanned, Authenticator will dereference the
 // presentation request to this URL. This route simply returns the cached
 // presentation request to Authenticator.
-app.get('/presentation-request.jwt', async (req, res) => {
+verifierapp.get('/presentation-request.jwt', async (req, res) => {
 
   // Look up the issue reqeust by session ID
   sessionStore.get(req.query.id, (error, session) => {
@@ -154,7 +154,7 @@ app.get('/presentation-request.jwt', async (req, res) => {
 // at this URL. We can verify the credential and extract its contents
 // to verify the user is a Verified Credential Ninja.
 var parser = bodyParser.urlencoded({ extended: false });
-app.post('/presentation-response', parser, async (req, res) => {
+verifierapp.post('/presentation-response', parser, async (req, res) => {
 
   // Set up the Verifiable Credentials SDK to validate all signatures
   // and claims in the credential presentation.
@@ -194,7 +194,7 @@ app.post('/presentation-response', parser, async (req, res) => {
 // Checks to see if the server received a successful presentation
 // of a Verified Credential Ninja card. Updates the browser UI with
 // a successful message if the user is a verified ninja.
-app.get('/presentation-response', async (req, res) => {
+verifierapp.get('/presentation-response', async (req, res) => {
 
   // If a credential has been received, display the contents in the browser
   if (req.session.verifiedCredential) {
@@ -210,4 +210,4 @@ app.get('/presentation-response', async (req, res) => {
 })
 
 // start server
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+verifierapp.listen(port, () => console.log(`Example app listening on port ${port}!`))

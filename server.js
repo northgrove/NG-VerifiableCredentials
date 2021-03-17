@@ -12,5 +12,5 @@ else if (process.env.VC_TYPE === "verifier") {
  
 
 } else {
-    console.log("northing")
+    console.log("northing to run")
 }

@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
@@ -19,16 +19,18 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '12.13.0'
+        node-version: '12.x'
 
     - name: npm install, build, and test
       run: |
-        npm install .\issuer\
+        npm install
+        npm run build --if-present
+        npm run test --if-present
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'ngvc-issuer'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8e7515cdf41840a69dc088fcd6672f1b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0723e32f5eed4cc79370ca7a177d60d6 }}
         package: .

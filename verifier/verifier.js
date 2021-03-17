@@ -57,7 +57,7 @@ const verifierapp = express()
 const port = process.env.PORT || 8082;
 
 // Serve static files out of the /public directory
-verifierapp.use(express.static('.\\verifier\\public'))
+verifierapp.use(express.static('verifier/public'))
 
 // Set up a simple server side session store.
 // The session store will briefly cache presentation requests

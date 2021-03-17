@@ -42,7 +42,7 @@ const app = express()
 const port = process.env.PORT || 8081;
 
 // Serve static files out of the /public directory
-app.use(express.static('.\\issuer\\public'))
+app.use(express.static('issuer/public'))
 
 // Set up a simple server side session store.
 // The session store will briefly cache issuance requests

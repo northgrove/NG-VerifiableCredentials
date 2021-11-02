@@ -37,7 +37,7 @@ if (!config.did) {
 
 ////////// Load the VC SDK with the Issuing Service's DID and Key Vault details
 // const kvCredentials = new ClientSecretCredential(config.azTenantId, config.azClientId, config.azClientSecret);
-const kvCredentials = new ClientSecretCredential(config.azTenantId, process.env['AZURECONFIG_CLIENTID'], process.env['AZURECONFIG_CLIENTSECRET']);
+const kvCredentials = new ClientSecretCredential(config.azTenantId, process.env.AZURECONFIG_CLIENTID, process.env.AZURECONFIG_CLIENTSECRET);
 const signingKeyReference = new KeyReference(config.kvSigningKeyId, 'key', config.kvRemoteSigningKeyId);
 
 /////////// Set the expected values for the Verifiable Credential

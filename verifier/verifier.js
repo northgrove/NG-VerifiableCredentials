@@ -202,7 +202,7 @@ verifierapp.get('/presentation-response', async (req, res) => {
 
     presentedCredential = req.session.verifiedCredential;
     req.session.verifiedCredential = null;
-    return res.send(`Congratulations, ${presentedCredential.vc.credentialSubject.firstName} ${presentedCredential.vc.credentialSubject.lastName} is a Verified Demo Ninja by Northgrove!`)  
+    return res.send(`${presentedCredential.vc.credentialSubject.firstName} ${presentedCredential.vc.credentialSubject.lastName} is a Verified Demo Ninja by Northgrove!`)  
   }
 
   // If no credential has been received, just display an empty message

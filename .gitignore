@@ -114,3 +114,5 @@ dist
 # Leave this out for now
 package-lock.json
 
+# VC config secret
+didconfig.json

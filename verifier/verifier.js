@@ -36,13 +36,14 @@ if (!config.did) {
 }
 
 ////////// Load the VC SDK with the Issuing Service's DID and Key Vault details
-const kvCredentials = new ClientSecretCredential(config.azTenantId, config.azClientId, config.azClientSecret);
+// const kvCredentials = new ClientSecretCredential(config.azTenantId, config.azClientId, config.azClientSecret);
+const kvCredentials = new ClientSecretCredential(config.azTenantId, process.env['AZURECONFIG_CLIENTID'], process.env['AZURECONFIG_CLIENTSECRET']);
 const signingKeyReference = new KeyReference(config.kvSigningKeyId, 'key', config.kvRemoteSigningKeyId);
 
 /////////// Set the expected values for the Verifiable Credential
-const credential = 'https://beta.did.msidentity.com/v1.0/3c32ed40-8a10-465b-8ba4-0b1e86882668/verifiableCredential/contracts/VerifiedCredentialNinja';
-const credentialType = 'VerifiedCredentialNinja';
-const issuerDid = ['did:ion:EiCbzwA19W4I2S2aups60-4DwRkPHMIfxv_PbaF4vdA7Jw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJzaWdfMTE2M2NiYWQiLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiU3dwbzVuTWhhNnhCWTFVZGM0azNTU19EUE9WeGtGeXAta09oZVFGckFCMCIsInkiOiJVMW51QTI5YnN2OWNsRm1qZmhyLTR4and0WFVSYWUyLXpKWUdmaFRJbk9VIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIiwiYXNzZXJ0aW9uTWV0aG9kIl0sInR5cGUiOiJFY2RzYVNlY3AyNTZrMVZlcmlmaWNhdGlvbktleTIwMTkifV0sInNlcnZpY2VzIjpbeyJpZCI6ImxpbmtlZGRvbWFpbnMiLCJzZXJ2aWNlRW5kcG9pbnQiOnsib3JpZ2lucyI6WyJodHRwczovL2RpZGN1c3RvbWVycGxheWdyb3VuZC56MTMud2ViLmNvcmUud2luZG93cy5uZXQvIl19LCJ0eXBlIjoiTGlua2VkRG9tYWlucyJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQXJKdXpoVlV4SHhKUGNiWFVsNHJWNEhoVEx4OFh3ZlZNczJOd24xTlNxcGcifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJwOC1EQmxqdmc0bkI2U29vMkJkYUJHZExXMDdPaFhYTjJhRnlBdVdzVUZRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlBdFdLbDVJSHhZZE1fZXlKakdESEl3bnhkaGZKSzhkMExOb3JCLTJmQzdjdyJ9fQ'];
+const credential = 'https://beta.did.msidentity.com/v1.0/142ecb39-3dfe-4114-91f5-ea68b9b10d9d/verifiableCredential/contracts/NorthgroveDemoNinja';
+const credentialType = 'NorthgroveDemoNinja';
+const issuerDid = ['did:ion:EiBBuiMxYZhXOCwkLliPs0vOxC94v7GF5dVdxG5hnxq6yQ:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJzaWdfYzYyMzU5ZTYiLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiQjV0ZjNSR0J1ZGc3YnRDeENOcEc1NGlJczU5TS04MFlqWGVZZzF2RmlpWSIsInkiOiJ3cVNTbWdTYmhwVnZERHdFOTZKRU83QmFWREZlcnpkVzhqSEhfUWtDNlBnIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIiwiYXNzZXJ0aW9uTWV0aG9kIl0sInR5cGUiOiJFY2RzYVNlY3AyNTZrMVZlcmlmaWNhdGlvbktleTIwMTkifV0sInNlcnZpY2VzIjpbeyJpZCI6ImxpbmtlZGRvbWFpbnMiLCJzZXJ2aWNlRW5kcG9pbnQiOnsib3JpZ2lucyI6WyJodHRwczovL25vcnRoZ3JvdmUubm8vIl19LCJ0eXBlIjoiTGlua2VkRG9tYWlucyJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQzBnYWg2RGhBVmQ3NnI1RlpNeVU5NnNuTmtqZW14SGlackxKekVCZFJ2MHcifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUFIcUVRUUk5dmY2cHFnUGJNZmh4UzVSQVZtWGFPLXBDZ2FYRTdleUxBQVR3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlERi1PaVFOTlBvWE1qRnBjWWN1cUZRR3MyTGxwMzB2XzJFRng5bjNHRlJqZyJ9fQ'];
 
 var crypto = new CryptoBuilder()
     .useSigningKeyReference(signingKeyReference)
@@ -178,7 +179,7 @@ verifierapp.post('/presentation-response', parser, async (req, res) => {
   }
 
   var verifiedCredential = validationResponse.validationResult.verifiableCredentials[credentialType].decodedToken;
-  console.log(`${verifiedCredential.vc.credentialSubject.firstName} ${verifiedCredential.vc.credentialSubject.lastName} is a Verified Credential Ninja!`);
+  console.log(`${verifiedCredential.vc.credentialSubject.firstName} ${verifiedCredential.vc.credentialSubject.lastName} is a Demo Ninja!`);
 
   // Store the successful presentation in session storage
   sessionStore.get(req.body.state, (error, session) => {
@@ -201,7 +202,7 @@ verifierapp.get('/presentation-response', async (req, res) => {
 
     presentedCredential = req.session.verifiedCredential;
     req.session.verifiedCredential = null;
-    return res.send(`Congratulations, ${presentedCredential.vc.credentialSubject.firstName} ${presentedCredential.vc.credentialSubject.lastName} is a Verified Credential Ninja!`)  
+    return res.send(`Congratulations, ${presentedCredential.vc.credentialSubject.firstName} ${presentedCredential.vc.credentialSubject.lastName} is a Verified Demo Ninja by Northgrove!`)  
   }
 
   // If no credential has been received, just display an empty message

@@ -2,18 +2,18 @@
   "default": {
     "locale": "en-US",
     "card": {
-      "title": "Verified Credential Ninja",
-      "issuedBy": "Microsoft",
-      "backgroundColor": "#000000",
-      "textColor": "#ffffff",
+      "title": "Northgrove Demo Ninja",
+      "issuedBy": "Northgrove",
+      "backgroundColor": "#67a2d6",
+      "textColor": "#FFFFFF",
       "logo": {
-        "uri": "https://didcustomerplayground.blob.core.windows.net/public/ninja-icon.png",
-        "description": "Ninja Logo"
+        "uri": "https://msgrove.blob.core.windows.net/verifiableidentity/northgrove-full-logo-tr-inv-26x100.png",
+        "description": "NG Logo"
       },
-      "description": "Use your verified credential ninja card to prove to anyone that you know all about verifiable credentials."
+      "description": "Use your Northgrove Demo Ninja card to prove to anyone that you are a Demo Ninja verified by Northgrove."
     },
     "consent": {
-      "title": "Do you want to get your Verified Credential Ninja card?",
+      "title": "Do you want to get your Northgrove Demo Ninja card?",
       "instructions": "Sign in with your account to get your card."
     },
     "claims": {

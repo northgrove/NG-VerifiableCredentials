@@ -23,7 +23,8 @@ var { CryptoBuilder,
 const config = require('./didconfig.json')
 
 ////////// Load the VC SDK with the Issuer's DID and Key Vault details
-const kvCredentials = new ClientSecretCredential(config.azTenantId, config.azClientId, config.azClientSecret);
+// const kvCredentials = new ClientSecretCredential(config.azTenantId, config.azClientId, config.azClientSecret);
+const kvCredentials = new ClientSecretCredential(config.azTenantId, process.env['AZURECONFIG_CLIENTID'], process.env['AZURECONFIG_CLIENTSECRET']);
 const signingKeyReference = new KeyReference(config.kvSigningKeyId, 'key', config.kvRemoteSigningKeyId);
 
 var crypto = new CryptoBuilder()
@@ -33,8 +34,8 @@ var crypto = new CryptoBuilder()
     .build();
 
 /////////// Set the expected values for the Verifiable Credential
-const credential = 'https://beta.did.msidentity.com/v1.0/3c32ed40-8a10-465b-8ba4-0b1e86882668/verifiableCredential/contracts/VerifiedCredentialNinja';
-const credentialType = ['VerifiedCredentialNinja'];
+const credential = 'https://beta.did.msidentity.com/v1.0/142ecb39-3dfe-4114-91f5-ea68b9b10d9d/verifiableCredential/contracts/NorthgroveDemoNinja';
+const credentialType = ['NorthgroveDemoNinja'];
 
 //////////// Main Express server function
 // Note: You'll want to update port values for your setup.

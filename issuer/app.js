@@ -34,7 +34,7 @@ var crypto = new CryptoBuilder()
     .build();
 
 /////////// Set the expected values for the Verifiable Credential
-const credential = 'https://beta.did.msidentity.com/v1.0/142ecb39-3dfe-4114-91f5-ea68b9b10d9d/verifiableCredential/contracts/NorthgroveDemoNinja';
+const credential = 'https://beta.eu.did.msidentity.com/v1.0/142ecb39-3dfe-4114-91f5-ea68b9b10d9d/verifiableCredential/contracts/NorthgroveDemoNinja';
 const credentialType = ['NorthgroveDemoNinja'];
 
 //////////// Main Express server function
